@@ -4,5 +4,5 @@
     * Run [cheerio.js](https://www.npmjs.com/package/cheerio)
     * Copy simple picture from [dominos.ua](http://dominos.ua/)
     * Copy entire pizza element
-- [ ] Push it into Mongo
+- [x] Push it into Mongo
 - [ ] Output to page

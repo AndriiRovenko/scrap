@@ -1,6 +1,11 @@
 const cheerio = require ('cheerio');
 const rp = require ('request-promise');
 
+const MongoClient = require ('mongodb').MongoClient;
+const assert = require ('assert');
+const ObjectId = require ('mongodb').ObjectID;
+//const url = '';
+//var elements = [];
 rp('http://dominos.ua/ru/Pizza/')
     .then(function (htmlString) {
 		let $ = cheerio.load(htmlString);
@@ -23,7 +28,25 @@ rp('http://dominos.ua/ru/Pizza/')
       elements[i] = tmp;
     });
     
-    console.log(elements);
+    //------------------------------------------------------
+var insertDocuments = function(db, callback) {
+  var collection = db.collection('test');
+  collection.insertMany(elements, function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted documents into the collection");
+    callback(result);
+  });
+}
+
+MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db){
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+
+  insertDocuments(db, function() {
+    db.close();
+  });
+});
+    //------------------------------------------------------
 
     })
     .catch(function (err) {

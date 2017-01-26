@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/oknevor/scrap#readme",
   "dependencies": {
+    "assert": "^1.4.1",
     "cheerio": "^0.22.0",
+    "mongodb": "^2.2.22",
     "request-promise": "^4.1.1"
   }
 }
